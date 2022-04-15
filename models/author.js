@@ -17,7 +17,7 @@ AuthorSchema
 .get(function(){
     var fullname = ' '
     if(this.first_name && this.family_name){
-        fullname = this.first_name + this.family_name
+        fullname = this.first_name + ' ' + this.family_name
     }
     else{
         fullname = ' '
