@@ -4,7 +4,6 @@ var Genre = require('../models/genre');
 var BookInstance = require('../models/bookinstance');
 
 var async = require('async');
-const { nextTick } = require('async');
 
 exports.index = function(req, res) {
 
