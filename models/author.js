@@ -32,7 +32,7 @@ AuthorSchema
 
 AuthorSchema.virtual('lifespan')
 .get(function(){
-    const lifespan = ''
+    var lifespan = ''
     if(this.date_of_birth){
         lifespan = this.date_of_birth.getYear().toString();
     }
@@ -40,6 +40,7 @@ AuthorSchema.virtual('lifespan')
     if(this.date_of_death){
         lifespan += this.date_of_death.getYear()
     }
+    return lifespan
 })
 
 AuthorSchema.virtual('dob')
