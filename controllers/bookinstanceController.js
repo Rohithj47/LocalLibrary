@@ -13,7 +13,6 @@ exports.bookinstance_list = function(req, res, next) {
 
 // Display detail page for a specific BookInstance.
 exports.bookinstance_detail = function(req, res, next) {
-    // res.send('NOT IMPLEMENTED: BookInstance detail: ' + req.params.id);
     BookInstance.findById(req.params.id)
     .populate('book')
     .exec(function (err, bookinstance) {
@@ -84,13 +83,26 @@ exports.bookinstance_create_post = [
 
 
 // Display BookInstance delete form on GET.
-exports.bookinstance_delete_get = function(req, res) {
-    res.send('NOT IMPLEMENTED: BookInstance delete GET');
+exports.bookinstance_delete_get = function(req, res, next) {
+    BookInstance.findById(req.params.id).exec(function(err,result){
+        if (err) { return next(err) }
+        console.log(result)
+        res.render('bookinstance_delete', {title: 'Book Instance Delete', bookinstance : result})
+    })
 };
 
 // Handle BookInstance delete on POST.
 exports.bookinstance_delete_post = function(req, res) {
-    res.send('NOT IMPLEMENTED: BookInstance delete POST');
+    BookInstance.findById(req.body.bookinstanceid).exec(function(err, bookinstance){
+        if(err) { return next(err) }
+        if (bookinstance == null){
+            res.redirect('/catalog/bookinstances')
+        }
+        BookInstance.findByIdAndRemove(req.body.bookinstanceid, function(err){
+            if (err) { return next(err) }
+            res.redirect('/catalog/bookinstances')
+        })
+    })
 };
 
 // Display BookInstance update form on GET.
