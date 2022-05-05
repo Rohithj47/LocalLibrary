@@ -15,9 +15,9 @@ var catalogRouter = require('./routes/catalog');
 
 var app = express();
 // Connect to Mongodb Atlas 
-console.log(process.env.mongoUrl)
+var MongoURI = process.env.MONGODB_URI || process.env.mongoUrl
 mongoose.connect(
-  process.env.mongoUrl,
+  MongoURI,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true
