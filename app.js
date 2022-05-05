@@ -14,7 +14,6 @@ var usersRouter = require('./routes/users');
 var catalogRouter = require('./routes/catalog');
 
 var app = express();
-
 // Connect to Mongodb Atlas 
 mongoose.connect(
   process.env.mongoUrl,
